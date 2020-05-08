@@ -1,8 +1,9 @@
 import pyglet
 from board import Board
+from constants import *
 
 if __name__ == "__main__":
-  window = pyglet.window.Window(width=800, height=800, resizable=False, caption='Snake')
+  window = pyglet.window.Window(width=WINDOW_HEIGHT, height=WINDOW_WIDTH, resizable=False, caption='Snake')
   board = Board()
   
   @window.event
