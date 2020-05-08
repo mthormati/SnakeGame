@@ -1,19 +1,25 @@
 import pyglet
 
-from board import Board
+from board import *
 from constants import *
 from food import Food
+from location import Location
 
 if __name__ == "__main__":
   window = pyglet.window.Window(width=WINDOW_HEIGHT, height=WINDOW_WIDTH, resizable=False, caption='Snake')
   food = Food()
-  print(food.getX(), food.getY())
-  board = Board(food)
+  snake = Snake(Location(SNAKE_START_X, SNAKE_START_Y), LEFT, SNAKE_START_SIZE)
   
   @window.event
   def on_draw():
+    print("drawing")
     window.clear()
-    board.renderBoard()
+    renderBoard(food, snake)
+
+  def game_loop(event):
+    print("inside game loop")
+    
+  pyglet.clock.schedule_interval(game_loop, 1)
 
   pyglet.app.run()
 
