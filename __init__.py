@@ -1,10 +1,14 @@
 import pyglet
+
 from board import Board
 from constants import *
+from food import Food
 
 if __name__ == "__main__":
   window = pyglet.window.Window(width=WINDOW_HEIGHT, height=WINDOW_WIDTH, resizable=False, caption='Snake')
-  board = Board()
+  food = Food()
+  print(food.getX(), food.getY())
+  board = Board(food)
   
   @window.event
   def on_draw():
