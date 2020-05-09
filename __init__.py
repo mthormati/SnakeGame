@@ -1,18 +1,22 @@
 import pyglet
 
-from render import *
 from constants import *
 from food import Food
 from location import Location
+from render import *
+from score import Score
 
 if __name__ == "__main__":
-  window = pyglet.window.Window(width=WINDOW_HEIGHT, height=WINDOW_WIDTH, resizable=False, caption='Snake')
+  window = pyglet.window.Window(width=WINDOW_WIDTH, height=WINDOW_HEIGHT+SCORE_HEIGHT, resizable=False, caption='Snake')
+  pyglet.gl.glClearColor(0.5, 0.6, 0.7, 1.0)
   snake = Snake(Location(SNAKE_START_X, SNAKE_START_Y), LEFT, SNAKE_START_SIZE)
   food = Food(snake.getSnakeList())
+  score = Score()
   
   @window.event
   def on_draw():
     window.clear()
+    renderScore(score)
     renderBoard(food, snake)
 
   @window.event
@@ -39,6 +43,7 @@ if __name__ == "__main__":
       if snake.canEatFood(food):
         snake.grow()
         food.placeFood(snake.getSnakeList())
+        score.incrementScore()
     
   pyglet.clock.schedule_interval(game_loop, 0.15)
 

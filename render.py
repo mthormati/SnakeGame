@@ -4,6 +4,7 @@ from constants import *
 from food import Food
 from snake import Snake
 from location import Location
+from score import Score
 
 def renderBoard(food: Food, snake: Snake):
   batch = pyglet.graphics.Batch()
@@ -25,6 +26,14 @@ def renderBoard(food: Food, snake: Snake):
       else:
         batch.add(4, pyglet.gl.GL_QUADS, None, vertexList, ('c3B',lightSquareColor*4))
   batch.draw()
+
+def renderScore(score: Score):
+  label = pyglet.text.Label('Score: ' + str(score.getScore()),
+                          font_name='Times New Roman',
+                          font_size=28,
+                          x=10, y=WINDOW_HEIGHT + SCORE_HEIGHT//2,
+                          anchor_y='center')
+  label.draw()
 
 def createQuadVertexList(x: int, y: int, width: int, height: int):
   return x, y, x + width, y, x + width, y + height, x, y + height
