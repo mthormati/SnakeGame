@@ -16,7 +16,7 @@ if __name__ == "__main__":
   @window.event
   def on_draw():
     window.clear()
-    renderScore(score)
+    renderHeader(score, 'Press <space> to pause/unpause\nPress <enter> to restart')
     renderBoard(food, snake)
 
   @window.event
@@ -44,6 +44,9 @@ if __name__ == "__main__":
         snake.grow()
         food.placeFood(snake.getSnakeList())
         score.incrementScore()
+    else:
+      score.compareAndSetHighScore()
+      score.resetScore()
     
   pyglet.clock.schedule_interval(game_loop, 0.15)
 

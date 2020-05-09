@@ -27,13 +27,28 @@ def renderBoard(food: Food, snake: Snake):
         batch.add(4, pyglet.gl.GL_QUADS, None, vertexList, ('c3B',lightSquareColor*4))
   batch.draw()
 
-def renderScore(score: Score):
-  label = pyglet.text.Label('Score: ' + str(score.getScore()),
-                          font_name='Times New Roman',
-                          font_size=28,
-                          x=10, y=WINDOW_HEIGHT + SCORE_HEIGHT//2,
-                          anchor_y='center')
-  label.draw()
+def renderHeader(score: Score, helpText: str):
+  batch = pyglet.graphics.Batch()
+  pyglet.text.Label('Score: ' + str(score.getScore()), 
+    font_name='Times New Roman',
+    font_size=28,
+    x=10, y=WINDOW_HEIGHT+SCORE_HEIGHT//2,
+    anchor_y='center',
+    batch=batch)
+  pyglet.text.Label(helpText, 
+    font_name='Times New Roman',
+    font_size=12,
+    x=WINDOW_WIDTH//2, y=WINDOW_HEIGHT+SCORE_HEIGHT//2,
+    anchor_x='center', anchor_y='center', align='center',
+    multiline=True, width=WINDOW_WIDTH,
+    batch=batch)
+  pyglet.text.Label('Max: ' + str(score.getHighScore()), 
+    font_name='Times New Roman',
+    font_size=28,
+    x=WINDOW_WIDTH-10, y=WINDOW_HEIGHT+SCORE_HEIGHT//2,
+    anchor_x='right', anchor_y='center',
+    batch=batch)
+  batch.draw()
 
 def createQuadVertexList(x: int, y: int, width: int, height: int):
   return x, y, x + width, y, x + width, y + height, x, y + height
