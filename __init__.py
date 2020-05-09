@@ -17,7 +17,7 @@ if __name__ == "__main__":
     renderBoard(food, snake)
 
   def game_loop(event):
-    print("inside game loop")
+    snake.move()
     
   pyglet.clock.schedule_interval(game_loop, 1)
 
