@@ -11,6 +11,9 @@ class Snake:
     for i in range(1, size):
       self.snakeList.append(Location(location.getX() + i, location.getY()))
 
+  def getSnakeList(self):
+    return self.snakeList
+
   def isSnakeBlock(self, location: Location):
     for i in range(self.TAIL + 1):
       if location.isEqual(self.snakeList[i]):
@@ -30,3 +33,6 @@ class Snake:
       self.snakeList[self.HEAD] = Location(headX + 1, headY)
     else:
       self.snakeList[self.HEAD] = Location(headX, headY - 1)
+
+  # def isAlive(self):
+  #   if head
