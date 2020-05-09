@@ -12,7 +12,6 @@ if __name__ == "__main__":
   snake = Snake(Location(SNAKE_START_X, SNAKE_START_Y), LEFT, SNAKE_START_SIZE)
   food = Food(snake.getSnakeList())
   score = Score()
-  global paused
   paused = False
   
   @window.event
@@ -23,9 +22,9 @@ if __name__ == "__main__":
 
   @window.event
   def on_key_press(symbol, modifiers):
+    global paused, snake, food, score
     currDirection = snake.getDirection()
     moveBudget = snake.getMoveBudget()
-    global paused
     if symbol == pyglet.window.key.LEFT and currDirection != RIGHT and moveBudget > 0:
       snake.setDirection(LEFT)
       snake.setMoveBudget(0)
@@ -40,9 +39,12 @@ if __name__ == "__main__":
       snake.setMoveBudget(0)
     elif symbol == pyglet.window.key.SPACE:
       paused = not paused
+    elif symbol == pyglet.window.key.ENTER:
+      snake = Snake(Location(SNAKE_START_X, SNAKE_START_Y), LEFT, SNAKE_START_SIZE)
+      food = Food(snake.getSnakeList())
+      score.resetScore()
 
   def game_loop(event):
-    global paused
     if not paused:
       if snake.isAlive():
         snake.move()
