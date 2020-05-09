@@ -12,6 +12,8 @@ if __name__ == "__main__":
   snake = Snake(Location(SNAKE_START_X, SNAKE_START_Y), LEFT, SNAKE_START_SIZE)
   food = Food(snake.getSnakeList())
   score = Score()
+  global paused
+  paused = False
   
   @window.event
   def on_draw():
@@ -23,6 +25,7 @@ if __name__ == "__main__":
   def on_key_press(symbol, modifiers):
     currDirection = snake.getDirection()
     moveBudget = snake.getMoveBudget()
+    global paused
     if symbol == pyglet.window.key.LEFT and currDirection != RIGHT and moveBudget > 0:
       snake.setDirection(LEFT)
       snake.setMoveBudget(0)
@@ -35,18 +38,21 @@ if __name__ == "__main__":
     elif symbol == pyglet.window.key.DOWN and currDirection != UP and moveBudget > 0:
       snake.setDirection(DOWN)
       snake.setMoveBudget(0)
+    elif symbol == pyglet.window.key.SPACE:
+      paused = not paused
 
   def game_loop(event):
-    if snake.isAlive():
-      snake.move()
-      snake.setMoveBudget(1)
-      if snake.canEatFood(food):
-        snake.grow()
-        food.placeFood(snake.getSnakeList())
-        score.incrementScore()
-    else:
-      score.compareAndSetHighScore()
-      score.resetScore()
+    global paused
+    if not paused:
+      if snake.isAlive():
+        snake.move()
+        snake.setMoveBudget(1)
+        if snake.canEatFood(food):
+          snake.grow()
+          food.placeFood(snake.getSnakeList())
+          score.incrementScore()
+      else:
+        score.compareAndSetHighScore()
     
   pyglet.clock.schedule_interval(game_loop, 0.15)
 
