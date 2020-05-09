@@ -15,12 +15,30 @@ if __name__ == "__main__":
     window.clear()
     renderBoard(food, snake)
 
+  @window.event
+  def on_key_press(symbol, modifiers):
+    currDirection = snake.getDirection()
+    moveBudget = snake.getMoveBudget()
+    if symbol == pyglet.window.key.LEFT and currDirection != RIGHT and moveBudget > 0:
+      snake.setDirection(LEFT)
+      snake.setMoveBudget(0)
+    elif symbol == pyglet.window.key.UP and currDirection != DOWN and moveBudget > 0:
+      snake.setDirection(UP)
+      snake.setMoveBudget(0)
+    elif symbol == pyglet.window.key.RIGHT and currDirection != LEFT and moveBudget > 0:
+      snake.setDirection(RIGHT)
+      snake.setMoveBudget(0)
+    elif symbol == pyglet.window.key.DOWN and currDirection != UP and moveBudget > 0:
+      snake.setDirection(DOWN)
+      snake.setMoveBudget(0)
+
   def game_loop(event):
     if snake.isAlive():
       snake.move()
+      snake.setMoveBudget(1)
     else:
       print("snake is dead")
     
-  pyglet.clock.schedule_interval(game_loop, 0.5)
+  pyglet.clock.schedule_interval(game_loop, 0.20)
 
   pyglet.app.run()

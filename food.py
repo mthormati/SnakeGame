@@ -14,6 +14,9 @@ class Food:
 
   def getY(self):
     return self.location.getY()
+
+  def getLocation(self):
+    return self.location
   
   def inExcludedBlock(self, loc: Location, excludedBlocks: List[Location]):
     for block in excludedBlocks:

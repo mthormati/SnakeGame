@@ -6,6 +6,7 @@ class Snake:
   def __init__(self, location: Location, direction: int, size: int):
     self.HEAD = 0
     self.TAIL = size - 1
+    self.moveBudget = 1
     self.direction = direction
     self.snakeList = [location]
     for i in range(1, size):
@@ -44,4 +45,14 @@ class Snake:
         return False
     return True
 
+  def setDirection(self, direction: int):
+    self.direction = direction
+
+  def getDirection(self):
+    return self.direction
     
+  def setMoveBudget(self, budget: int):
+    self.moveBudget = budget
+  
+  def getMoveBudget(self):
+    return self.moveBudget
