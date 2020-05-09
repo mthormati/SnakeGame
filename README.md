@@ -1,1 +1,1 @@
-#Snake Game
+The snake game programmed in python

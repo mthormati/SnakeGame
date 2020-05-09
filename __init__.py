@@ -1,6 +1,6 @@
 import pyglet
 
-from board import *
+from render import *
 from constants import *
 from food import Food
 from location import Location
