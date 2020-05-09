@@ -7,7 +7,7 @@ from render import *
 from score import Score
 
 if __name__ == "__main__":
-  window = pyglet.window.Window(width=WINDOW_WIDTH, height=WINDOW_HEIGHT+SCORE_HEIGHT, resizable=False, caption='Snake')
+  window = pyglet.window.Window(width=WINDOW_WIDTH, height=WINDOW_HEIGHT+HEADER_HEIGHT, resizable=False, caption='Snake')
   pyglet.gl.glClearColor(0.5, 0.6, 0.7, 1.0)
   snake = Snake(Location(SNAKE_START_X, SNAKE_START_Y), LEFT, SNAKE_START_SIZE)
   food = Food(snake.getSnakeList())

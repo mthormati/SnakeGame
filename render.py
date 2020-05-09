@@ -32,20 +32,20 @@ def renderHeader(score: Score, helpText: str):
   pyglet.text.Label('Score: ' + str(score.getScore()), 
     font_name='Times New Roman',
     font_size=28,
-    x=10, y=WINDOW_HEIGHT+SCORE_HEIGHT//2,
+    x=10, y=WINDOW_HEIGHT+HEADER_HEIGHT//2,
     anchor_y='center',
     batch=batch)
   pyglet.text.Label(helpText, 
     font_name='Times New Roman',
     font_size=12,
-    x=WINDOW_WIDTH//2, y=WINDOW_HEIGHT+SCORE_HEIGHT//2,
+    x=WINDOW_WIDTH//2, y=WINDOW_HEIGHT+HEADER_HEIGHT//2,
     anchor_x='center', anchor_y='center', align='center',
     multiline=True, width=WINDOW_WIDTH,
     batch=batch)
   pyglet.text.Label('Max: ' + str(score.getHighScore()), 
     font_name='Times New Roman',
     font_size=28,
-    x=WINDOW_WIDTH-10, y=WINDOW_HEIGHT+SCORE_HEIGHT//2,
+    x=WINDOW_WIDTH-10, y=WINDOW_HEIGHT+HEADER_HEIGHT//2,
     anchor_x='right', anchor_y='center',
     batch=batch)
   batch.draw()
