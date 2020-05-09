@@ -34,5 +34,14 @@ class Snake:
     else:
       self.snakeList[self.HEAD] = Location(headX, headY - 1)
 
-  # def isAlive(self):
-  #   if head
+  def isAlive(self):
+    headX = self.snakeList[self.HEAD].getX()
+    headY = self.snakeList[self.HEAD].getY()
+    if headX < 0 or headX >= BOARD_SIZE or headY < 0 or headY >= BOARD_SIZE:
+      return False
+    for i in range(self.HEAD + 1, self.TAIL + 1):
+      if self.snakeList[self.HEAD].isEqual(self.snakeList[i]):
+        return False
+    return True
+
+    

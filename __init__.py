@@ -12,24 +12,15 @@ if __name__ == "__main__":
   
   @window.event
   def on_draw():
-    print("drawing")
     window.clear()
     renderBoard(food, snake)
 
   def game_loop(event):
-    snake.move()
+    if snake.isAlive():
+      snake.move()
+    else:
+      print("snake is dead")
     
   pyglet.clock.schedule_interval(game_loop, 0.5)
 
   pyglet.app.run()
-
-
-
-# snake = Snake(10,10)
-# food = Food()
-# food.putInRandomPosition()
-# while snake.isAlive():
-#     check for key input in background
-#     snake.updatePosition()
-#     board.renderBoard()
-#     timeout(small duraction)
