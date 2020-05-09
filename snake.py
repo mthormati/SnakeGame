@@ -1,6 +1,7 @@
 from constants import *
 
 from location import Location
+from food import Food
 
 class Snake:
   def __init__(self, location: Location, direction: int, size: int):
@@ -44,6 +45,12 @@ class Snake:
       if self.snakeList[self.HEAD].isEqual(self.snakeList[i]):
         return False
     return True
+
+  def canEatFood(self, food: Food):
+    foodLoc = food.getLocation()
+    if self.snakeList[self.HEAD].isEqual(foodLoc):
+      return True
+    return False
 
   def setDirection(self, direction: int):
     self.direction = direction

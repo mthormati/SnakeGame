@@ -36,6 +36,8 @@ if __name__ == "__main__":
     if snake.isAlive():
       snake.move()
       snake.setMoveBudget(1)
+      if snake.canEatFood(food):
+        food.placeFood(snake.getSnakeList())
     else:
       print("snake is dead")
     

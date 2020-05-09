@@ -7,7 +7,7 @@ from typing import List
 
 class Food:
   def __init__(self, excludedBlocks: List[Location]):
-    self.location = self.getRandomLocation(excludedBlocks)
+    self.placeFood(excludedBlocks)
 
   def getX(self):
     return self.location.getX()
@@ -23,6 +23,9 @@ class Food:
       if loc.isEqual(block):
         return True
     return False
+
+  def placeFood(self, excludedBlocks: List[Location]):
+    self.location = self.getRandomLocation(excludedBlocks)
 
   def getRandomLocation(self, excludedBlocks: List[Location]):
     loc = Location(random.randint(0, BOARD_SIZE-1), random.randint(0, BOARD_SIZE-1))
