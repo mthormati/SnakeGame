@@ -24,7 +24,8 @@ class Snake:
 
   def move(self):
     for i in range(self.TAIL, self.HEAD, - 1):
-      self.snakeList[i] = self.snakeList[i - 1]
+      if self.snakeList[i] != self.snakeList[i - 1]:
+        self.snakeList[i] = self.snakeList[i - 1]
     headX = self.snakeList[self.HEAD].getX()
     headY = self.snakeList[self.HEAD].getY()
     if self.direction == LEFT:
@@ -51,6 +52,10 @@ class Snake:
     if self.snakeList[self.HEAD].isEqual(foodLoc):
       return True
     return False
+
+  def grow(self):
+    self.snakeList.append(self.snakeList[self.TAIL])
+    self.TAIL += 1
 
   def setDirection(self, direction: int):
     self.direction = direction

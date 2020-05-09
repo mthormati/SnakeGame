@@ -11,7 +11,7 @@ def renderBoard(food: Food, snake: Snake):
   darkSquareColor = [12, 16, 21]
   lightSquareColor = [48, 59, 71]
   foodColor = [189, 30, 46]
-  snakeColor = [35, 158, 235]
+  snakeColor = [35, 158, 235] if snake.isAlive() else [151, 50, 168]
 
   for i in range(BOARD_SIZE):
     for j in range(BOARD_SIZE):

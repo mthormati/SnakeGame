@@ -37,10 +37,9 @@ if __name__ == "__main__":
       snake.move()
       snake.setMoveBudget(1)
       if snake.canEatFood(food):
+        snake.grow()
         food.placeFood(snake.getSnakeList())
-    else:
-      print("snake is dead")
     
-  pyglet.clock.schedule_interval(game_loop, 0.20)
+  pyglet.clock.schedule_interval(game_loop, 0.15)
 
   pyglet.app.run()
